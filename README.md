@@ -1,73 +1,53 @@
 <br/>
 <p align="center">
-    <a href="https://sulu.io/" target="_blank">
-        <img width="50%" src="https://sulu.io/website/images/sulu.svg" alt="Sulu logo">
+    <a href="https://liberfly.com.br/" target="_blank">
+        <img width="50%" src="https://blog.liberfly.com.br/wp-content/uploads/2022/05/cropped-MicrosoftTeams-image-8-e1652819689370.png" alt="Liberfly Logo">
     </a>
 </p>
 
 <br/>
-<p align="center">
-    <a href="LICENSE" target="_blank">
-        <img src="https://img.shields.io/github/license/sulu/sulu.svg" alt="GitHub license">
-    </a>
-    <a href="https://github.com/sulu/sulu/releases" target="_blank">
-        <img src="https://img.shields.io/github/tag/sulu/sulu.svg" alt="GitHub tag (latest SemVer)">
-    </a>
-    <a href="https://github.com/sulu/sulu/actions" target="_blank">
-        <img src="https://img.shields.io/github/workflow/status/sulu/sulu/Test%20application.svg?label=test-workflow" alt="Test workflow status">
-    </a>
-    <a href="https://github.com/sulu/sulu/commits/2.x" target="_blank">
-        <img src="https://img.shields.io/github/commit-activity/y/sulu/sulu.svg" alt="GitHub commit activity">
-    </a>
-    <a href="https://github.com/sulu/sulu/graphs/contributors" target="_blank">
-        <img src="https://img.shields.io/github/contributors-anon/sulu/sulu.svg" alt="GitHub contributors">
-    </a>
-    <a href="https://packagist.org/packages/sulu/sulu" target="_blank">
-        <img src="https://img.shields.io/packagist/dt/sulu/sulu.svg" alt="Packagist downloads">
-    </a>
-</p>
-<br/>
 
-[Sulu](https://sulu.io/) is a highly extensible open-source **PHP content management system based** on the [Symfony](https://symfony.com/) framework. Sulu is developed to deliver robust **multi-lingual and multi-portal websites** while providing an **intuitive and extensible administration interface** to manage the full content lifecycle.
+# Liberfly App
 
-Have a look at the official [Sulu website](https://sulu.io/) for a comprehensive list of Sulu's features, core values and use cases.
+## Descrição
+Este projeto foi solicitado pela empresa Liberfy, para uma avaliação dos conhjecimentos tecnicos do profissional.
+A aplicação é um PWA que tewm por objetivo registrar os chamados/suportes feitos pela empresa. 
 
-<br/>
-<p align="center">
-    <img width="80%" src="https://sulu.io/uploads/media/800x@2x/07/167-ezgif.gif?v=2" alt="Sulu Slideshow">
-</p>
-<br/>
+## Pré-requisitos
+- Node.js
+- npm ou Yarn
 
-This repository contains the **core framework of the Sulu content management system**. The framework implements the functionality that is built into the Sulu content management system and therefore is a dependency of all Sulu projects.
+## Instalação do Front
+1. Clone o repositório: `git clone https://github.com/Ajada/liberfly-app.git`
+2. Acesse o diretório do projeto: `cd liberfly-app`
+3. Acesse o diretório do frontend: `cd front-app`
+4. Instale as dependências: `npm install` ou `yarn`
 
-If you want to **start a new Sulu project**, you might be interested in the [sulu/skeleton](https://github.com/sulu/skeleton) template repository. If you are planning to **extend your existing Sulu project**, visit the [Sulu organization](https://github.com/sulu) on GitHub for a complete list of official Sulu bundles.
+## Instalação do Back
+1. Acesse o diretório do projeto: `cd liberfly-app`
+2. Acesse o diretório do backend: `cd api`
+3. Instale as dependências: `composer install`
+4. Clone o env.example para o `.env` e passe os dados do banco
+5. Após instalar as dependencias rode o comando `php artisan jwt:secret` e tambem o `php artisan key:generate`
+6. Rode as migrações e as seeds para popular o banco em desenvolvimento
 
+## Configuração
+1. Renomeie o arquivo `.env.example` para `.env`
+2. Edite o arquivo `.env` e configure as variáveis de ambiente necessárias
 
-## 🚀&nbsp; Installation and Documentation
+## Executando o projeto
+1. Inicie o servidor de desenvolvimento do frontend: `npm run serve` ou `yarn serve`
+2. Abra o projeto no navegador: `http://localhost:8080`
+3. Faça o mesmo com o servidor de api: `php artisan serve`
 
-The [sulu/skeleton](https://github.com/sulu/skeleton) repository provides a **pre-configured project template** to quick-start your development. Visit the official [Sulu documentation](http://docs.sulu.io/en/latest/book/getting-started.html) to find out how to use the project template for starting your own Sulu project.
+## Lembre-se de verificar os caminhos no .env do frontend
 
+## Produção
+- O app pode ser acessado através do link: `https://liberfly.wolftechti.com.br/` com o usuario `test@example.com` e senha `password`
 
-## ❤️&nbsp; Community and Contributions
+## Observações
+O app foi contruido do zero, e apresenta alguns bugs na versão mobile por conta do tempo disponivel para o desenvovimento.
+A aplicação tem usa JWT nas requisições e nas rotas, seguindo as boas práticas de contrução de api's REST.
 
-The Sulu content management system is a **community-driven open source project** backed by various partner companies. We are committed to a fully transparent development process and **highly appreciate any contributions**. Whether you are helping us fixing bugs, proposing new feature, improving our documentation or spreading the word - **we would love to have you as part of the Sulu community**.
-
-
-## 📫&nbsp; Have a question? Want to chat? Ran into a problem?
-
-We are happy to welcome you in our official [Slack channel](https://sulu.io/services-and-support) or answer your questions via [GitHub Discussions](https://github.com/sulu/sulu/discussions)! Obviously you can always **reach out to us directly** via the [Sulu twitter account](https://twitter.com/sulu) or post your question on [StackOverflow](https://stackoverflow.com/questions/tagged/sulu) with the official `sulu` tag.
-
-
-## 🤝&nbsp; Found a bug? Missing a specific feature?
-
-Feel free to **file a new issue** with a respective title and description on the the [sulu/sulu](https://github.com/sulu/sulu/issues) repository. If you already found a solution to your problem, **we would love to review your pull request**! Have a look at our [contribution guidelines](http://docs.sulu.io/en/latest/developer/contributing/) to find out about our coding standards.
-
-
-## ✅&nbsp; Requirements
-
-Sulu requires a **PHP version higher or equal to 8.0** and is compatible with every **Symfony version starting from 5.4**. Have a look at the `require` section in the [composer.json](composer.json) of the [sulu/sulu](https://github.com/sulu/sulu) core framework to find an **up-to-date list of the requirements** of Sulu content management system.
-
-
-## 📘&nbsp; License
-
-The Sulu content management system is released under the under terms of the [MIT License](LICENSE).
+## Licença
+[MIT](https://opensource.org/licenses/MIT)

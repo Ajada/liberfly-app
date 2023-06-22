@@ -10,7 +10,6 @@ use Illuminate\Support\Facades\DB;
 class CalledController extends Controller
 {
 
-
     public function index()
     {
         return response()->json(Called::all(), 200);
