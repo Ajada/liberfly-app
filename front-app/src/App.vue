@@ -1,7 +1,9 @@
 <template>
   <div id="app">
     <TheSidebarVue>
-      <router-view/>
+      <transition name="slide" mode="out-in">
+        <router-view/>
+      </transition>
     </TheSidebarVue>
   </div>
 </template>
@@ -25,16 +27,14 @@ export default {
   color: #2c3e50;
 }
 
-// nav {
-//   padding: 30px;
+.slide-enter,
+.slide-leave-to {
+  transform: translate(-50px);
+  opacity: 0;
+}
 
-//   a {
-//     font-weight: bold;
-//     color: #2c3e50;
-
-//     &.router-link-exact-active {
-//       color: #42b983;
-//     }
-//   }
-// }
+.slide-enter-active,
+.slide-leave-active {
+  transition: all 0.3s;
+}
 </style>

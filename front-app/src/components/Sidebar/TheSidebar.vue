@@ -2,12 +2,13 @@
   <div class="flex h-screen">
     <button
       @click="toggleMenu"
+      class="ml-1"
       :class="[
         'fixed z-10 left-64 top-2 bg-gray-800 rounded-md p-2 text-white transition-transform duration-300',
         {'-translate-x-64': !menuOpen}
       ]"
     >
-      <i :class="menuOpen ? 'fa-solid fa-xmark' : 'fa-solid fa-bars'"></i>
+      <i class="text-xl" :class="menuOpen ? 'fa-solid fa-xmark' : 'fa-solid fa-bars'"></i>
     </button>
 
     <div
@@ -30,7 +31,7 @@
       class="absolute inset-0 bg-gray-100"
       :class="['bg-gray-100',{'ml-0': !menuOpen, 'ml-64': menuOpen}]">
       <div class="absolute inset-0 h-screen max-h-[100vh] overflow-auto" :style="menuOpen ? 'pointer-events: auto;' : 'pointer-events: none;'">
-        <ContentContainerVue>
+        <ContentContainerVue class="z-10">
           <slot />
         </ContentContainerVue>
       </div>
