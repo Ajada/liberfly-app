@@ -35,13 +35,13 @@
         </ContentContainerVue>
       </div>
     </div>
-    <FloatButtonVue />
+    <FloatButtonVue :link="'client'" />
   </div>
 </template>
 
 <script>
 import ContentContainerVue from '@/components/Containers/ContentContainer.vue'
-import LinkVue from '../Links/TheLink.vue'
+import LinkVue from '../Links/TheLinkMenu.vue'
 import FloatButtonVue from '../BaseButtons/FloatButton.vue'
 
 export default {

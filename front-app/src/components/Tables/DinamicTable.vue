@@ -8,24 +8,28 @@
               <tr class="bg-gray-200 text-gray-600 uppercase text-sm leading-normal">
                 <th class="py-3 px-6 text-left">Atendente</th>
                 <th class="py-3 px-6 text-left">Cliente</th>
+                <th class="py-3 px-6 text-left">Assunto</th>
                 <th class="py-3 px-6 text-left">Data</th>
-                <th class="py-3 px-6 text-left">Motivo</th>
                 <th class="py-3 px-6 text-center">Ações</th>
               </tr>
             </thead>
             <tbody class="text-gray-600 text-sm font-light">
-              <tr class="border-b border-gray-200 hover:bg-gray-100">
-                <td class="py-3 px-6 text-left">user.name</td>
-                <td class="py-3 px-6 text-left">user.current</td>
-                <td class="py-3 px-6 text-left">user.mail</td>
-                <td class="py-3 px-6 text-left">user.password</td>
+              <tr v-for="(item, index) in items" :key="index" class="border-b border-gray-200 hover:bg-gray-100">
+                <td class="py-3 px-6 text-left"> {{ item.employee }} </td>
+                <td class="py-3 px-6 text-left"> {{ item.client }} </td>
+                <td class="py-3 px-6 text-left"> {{ item.subject }} </td>
+                <td class="py-3 px-6 text-left"> {{ formatDate(item.created_at) }} </td>
                 <td class="py-3 px-6 text-center">
-                  <button class="bg-blue-400 m-1 hover:bg-blue-600 text-white font-bold py-2 px-4 rounded">
-                    Editar
-                  </button>
-                  <button @click.prevent="deleteStudent(user.id)" class="bg-red-400 m-1 hover:bg-red-600 text-white font-bold py-2 px-4 rounded">
-                    Excluir
-                  </button>
+                  <GeneralLinkVue
+                    class="bg-blue-400 m-1 hover:bg-blue-600 text-white font-bold py-2 px-4 rounded"
+                    :href="'edit-client/?id=' + item.id"
+                    :label="'Editar'"
+                  />
+                  <GenericButtonVue
+                    class="bg-red-400 m-1 hover:bg-red-600 text-white font-bold py-2 px-4 rounded"
+                    @click="removeItem(item.id)"
+                    :label="'Excluir'"
+                  />
                 </td>
               </tr>
             </tbody>
@@ -37,8 +41,40 @@
 </template>
 
 <script>
+import { api } from '@/utils/axios'
+import GenericButtonVue from '../BaseButtons/GenericButton.vue'
+import GeneralLinkVue from '../Links/GeneralLink.vue'
+
 export default {
-  name: 'DinamicTable'
+  name: 'DinamicTable',
+  components: {
+    GeneralLinkVue,
+    GenericButtonVue
+  },
+  props: {
+    items: [Array, Object]
+  },
+  methods: {
+    formatDate (createdAt) {
+      const date = new Date(createdAt)
+      const options = { year: 'numeric', month: 'long', day: 'numeric' }
+      return date.toLocaleDateString('pt-BR', options)
+    },
+    removeItem (id) {
+      const confirm = window.confirm('Esta ação não pode ser desfeita, deseja continuar ?')
+
+      if (!confirm) return
+
+      api.delete(`calleds/${id}`)
+        .then(res => {
+          alert(res.data.success)
+          window.location.reload()
+        })
+        .catch(err => {
+          console.log(err.data)
+        })
+    }
+  }
 }
 </script>
 

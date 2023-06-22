@@ -11,12 +11,12 @@ export default {
   name: 'BaseButtonCreateFloat',
   props: {
     icon: String,
-    link: { type: String, nullable: false }
+    link: { type: [String, Object], nullable: false }
   }
 }
 </script>
 
-<style lang="scss">
+<style lang="scss" scoped>
 .floating-button {
   position: fixed;
   bottom: 30px;

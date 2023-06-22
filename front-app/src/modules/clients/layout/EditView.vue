@@ -1,19 +1,20 @@
 <template>
   <div>
-    <TheTitleVue :label="'Registrar Chamado'" />
+    <TheTitleVue :label="'Editar Chamado'" />
 
-    <TheFormVue />
+    <TheFormEditVue  />
+
   </div>
 </template>
 
 <script>
 import TheTitleVue from '@/components/BaseTitles/TheTitle.vue'
-import TheFormVue from '@/components/TheForm.vue'
+import TheFormEditVue from '@/components/TheFormEdit.vue'
 
 export default {
   components: {
     TheTitleVue,
-    TheFormVue
+    TheFormEditVue
   }
 }
 </script>

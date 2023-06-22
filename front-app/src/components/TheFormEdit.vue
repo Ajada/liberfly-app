@@ -1,24 +1,28 @@
 <template>
   <div class="flex justify-center items-center m-10">
     <form class="w-full max-w-lg">
+      {{ form.employee }}
       <InputTextVue
         v-model="form.employee"
         :label="'Colaborador'"
         :placeholder="'Digite o nome do funcionario '"
       />
 
+      {{ form.client }}
       <InputTextVue
         v-model="form.client"
         :label="'Nome do Cliente'"
         :placeholder="'Digite o nome do cliente'"
       />
 
+      {{ form.subject }}
       <InputTextVue
         v-model="form.subject"
         :label="'Assunto'"
         :placeholder="'Digite o assunto relacionado'"
       />
 
+      {{ form.report }}
       <TextAreaVue
         v-model="form.report"
         :label="'Relato do Cliente'"
@@ -27,7 +31,7 @@
 
       <div class="flex justify-center">
         <BaseButtonVue
-          @click="newCalled"
+          @click="editCalled()"
           :label="'Salvar'"
         />
       </div>
@@ -57,11 +61,20 @@ export default {
       }
     }
   },
+  created () {
+    api.get(`calleds/${this.$route.query.id}`)
+      .then(res => {
+        return (this.form = res.data)
+      })
+      .catch(err => {
+        console.log(err)
+      })
+  },
   methods: {
-    newCalled () {
-      api.post('calleds', this.form)
+    editCalled () {
+      api.put(`calleds/${this.$route.query.id}`, this.form)
         .then(res => {
-          alert(res.data)
+          alert(res.data.success)
         })
         .catch(err => {
           return console.log(err)

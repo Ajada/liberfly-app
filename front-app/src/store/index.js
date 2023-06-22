@@ -4,6 +4,8 @@ import Vuex from 'vuex'
 
 Vue.use(Vuex)
 
+// no time brother
+
 export default new Vuex.Store({
   state: {
   },
@@ -12,18 +14,18 @@ export default new Vuex.Store({
   mutations: {
   },
   actions: {
-    login () {
+    // login () {
 
-    },
-    catchAllCalls () {
+    // },
+    // catchAllCalls () {
 
-    },
-    registerNewCall () {
+    // },
+    // registerNewCall () {
 
-    },
-    deleteCall () {
+    // },
+    // deleteCall () {
 
-    }
+    // }
   },
   modules: {
   }

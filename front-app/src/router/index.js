@@ -1,12 +1,16 @@
 import Vue from 'vue'
 import VueRouter from 'vue-router'
 import { dashRoutes } from '@/modules/dashboard/routes'
-import { clientsRoutes } from '@/modules/clients/routes'
+import { clientEditRoute, clientsRoutes } from '@/modules/clients/routes'
+import { loginPage } from '@/modules/login/routes'
 
 Vue.use(VueRouter)
 
 const routes = [
-  dashRoutes, clientsRoutes
+  dashRoutes,
+  clientsRoutes,
+  clientEditRoute,
+  loginPage
 ]
 
 const router = new VueRouter({
