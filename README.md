@@ -31,9 +31,8 @@ A aplicação é um PWA que tewm por objetivo registrar os chamados/suportes fei
 5. Após instalar as dependencias rode o comando `php artisan jwt:secret` e tambem o `php artisan key:generate`
 6. Rode as migrações e as seeds para popular o banco em desenvolvimento
 
-## Configuração
-1. Renomeie o arquivo `.env.example` para `.env`
-2. Edite o arquivo `.env` e configure as variáveis de ambiente necessárias
+## Lembrete
+Lembre-se de verficar o `.env` para que a `VUE_APP_API_URL` aponte para o host do laravel
 
 ## Executando o projeto
 1. Inicie o servidor de desenvolvimento do frontend: `npm run serve` ou `yarn serve`
@@ -46,8 +45,11 @@ A aplicação é um PWA que tewm por objetivo registrar os chamados/suportes fei
 - O app pode ser acessado através do link: `https://liberfly.wolftechti.com.br/` com o usuario `test@example.com` e senha `password`
 
 ## Observações
-O app foi contruido do zero, e apresenta alguns bugs na versão mobile por conta do tempo disponivel para o desenvovimento.
-A aplicação tem usa JWT nas requisições e nas rotas, seguindo as boas práticas de contrução de api's REST.
+O app foi contruido do zero, e apresenta alguns bugs na versão mobile por conta do tempo disponivel para o desenvovimento (24hrs), não cumnprindo apenas com o a documentação em Swagger por conta do prazo.
+A aplicação usa JWT nas requisições e nas rotas como solicitado, seguindo as boas práticas de contrução de api's REST.
+O app foi dividido entre front e back em uma estrutura isolada, tendo suporte a PWA, mesmo não sendo solicitado.
+O Software esta disponivel na web para agilizar os testes e processos como configuração do ambiente de desenvolvimento.
+Você pode visualizar a aplicação neste link `https://liberfly.wolftechti.com.br/` e para acessa-la use o email `test@example.com` e senha `password`
 
 ## Licença
 [MIT](https://opensource.org/licenses/MIT)
