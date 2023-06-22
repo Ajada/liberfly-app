@@ -62,7 +62,7 @@ export default {
     }
   },
   created () {
-    api.get(`calleds/${this.$route.query.id}`)
+    api.get(`v1/calleds/${this.$route.query.id}`)
       .then(res => {
         return (this.form = res.data)
       })
@@ -72,7 +72,7 @@ export default {
   },
   methods: {
     editCalled () {
-      api.put(`calleds/${this.$route.query.id}`, this.form)
+      api.put(`v1/calleds/${this.$route.query.id}`, this.form)
         .then(res => {
           alert(res.data.success)
         })

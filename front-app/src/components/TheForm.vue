@@ -59,7 +59,7 @@ export default {
   },
   methods: {
     newCalled () {
-      api.post('calleds', this.form)
+      api.post('v1/calleds', this.form)
         .then(res => {
           alert(res.data)
         })

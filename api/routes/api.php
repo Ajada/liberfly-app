@@ -17,11 +17,6 @@ Route::group([
     'prefix' => 'v1',
     'middleware' => 'jwt.auth'
 ], function () {
-    Route::get('/', function () {
-        return json_encode([
-            'success' => true
-        ]);
-    });
     Route::get('calleds', [CalledController::class, 'index']);
     Route::get('calleds/{id}', [CalledController::class, 'show']);
 

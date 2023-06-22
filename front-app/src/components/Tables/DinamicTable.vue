@@ -65,7 +65,7 @@ export default {
 
       if (!confirm) return
 
-      api.delete(`calleds/${id}`)
+      api.delete(`v1/calleds/${id}`)
         .then(res => {
           alert(res.data.success)
           window.location.reload()

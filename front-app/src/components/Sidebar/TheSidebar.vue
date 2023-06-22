@@ -4,7 +4,7 @@
       @click="toggleMenu"
       class="ml-1"
       :class="[
-        'fixed z-10 left-64 top-2 bg-gray-800 rounded-md p-2 text-white transition-transform duration-300',
+        'fixed z-20 left-64 top-2 bg-gray-800 rounded-md p-2 text-white transition-transform duration-300',
         {'-translate-x-64': !menuOpen}
       ]"
     >
@@ -15,8 +15,7 @@
       :class="[
         'flex flex-col w-64 bg-gray-800 text-white transition-transform duration-300',
         {'-translate-x-full': !menuOpen}
-      ]"
-    >
+      ]" >
       <div class="flex items-center justify-center h-16 bg-gray-900">
         <img src="https://blog.liberfly.com.br/wp-content/uploads/2022/05/cropped-MicrosoftTeams-image-8-e1652819689370.png" alt="Logo" class="h-8 w-auto">
       </div>
@@ -28,10 +27,14 @@
     </div>
 
     <div
-      class="absolute inset-0 bg-gray-100"
-      :class="['bg-gray-100',{'ml-0': !menuOpen, 'ml-64': menuOpen}]">
-      <div class="absolute inset-0 h-screen max-h-[100vh] overflow-auto" :style="menuOpen ? 'pointer-events: auto;' : 'pointer-events: none;'">
-        <ContentContainerVue class="z-10">
+      class=" z-10 inset-0 bg-gray-100"
+      :class="['bg-gray-100', {'ml-0': !menuOpen, 'ml-64': menuOpen}]"
+    >
+      <div
+        class=" inset-0 h-screen max-h-[100vh] overflow-auto"
+        :class="{ 'pointer-events-auto': menuOpen, 'pointer-events-none': !menuOpen }"
+      >
+        <ContentContainerVue class="z-10 min-w-full overflow-auto">
           <slot />
         </ContentContainerVue>
       </div>
@@ -61,10 +64,31 @@ export default {
     toggleMenu () {
       this.menuOpen = !this.menuOpen
     }
+  },
+  watch: {
+    menuOpen () {
+      if (window.innerWidth <= 640) {
+        this.$nextTick(() => {
+          // Atualizar o tamanho máximo do elemento contentContainer quando o menu é aberto/fechado
+          const contentContainer = document.querySelector('.content-container')
+          if (contentContainer) {
+            contentContainer.style.maxHeight = this.menuOpen ? '100vh' : 'none'
+          }
+        })
+      }
+    }
   }
 }
 </script>
 
 <style>
 /* Estilos adicionais do componente aqui */
+
+.pointer-events-auto {
+  pointer-events: auto;
+}
+
+.pointer-events-none {
+  pointer-events: none;
+}
 </style>

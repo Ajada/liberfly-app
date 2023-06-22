@@ -1,6 +1,7 @@
 <template>
   <div id="app">
-    <TheSidebarVue>
+    <LoginView v-if="!local" />
+    <TheSidebarVue v-else>
       <transition name="slide" mode="out-in">
         <router-view/>
       </transition>
@@ -10,10 +11,17 @@
 
 <script>
 import TheSidebarVue from './components/Sidebar/TheSidebar.vue'
+import LoginView from './modules/login/LoginView.vue'
 
 export default {
   components: {
-    TheSidebarVue
+    TheSidebarVue,
+    LoginView
+  },
+  data () {
+    return {
+      local: localStorage.__access
+    }
   }
 }
 </script>
