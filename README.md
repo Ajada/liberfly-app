@@ -45,11 +45,16 @@ Lembre-se de verficar o `.env` para que a `VUE_APP_API_URL` aponte para o host d
 - O app pode ser acessado através do link: `https://liberfly.wolftechti.com.br/` com o usuario `test@example.com` e senha `password`
 
 ## Observações
-O app foi contruido do zero, e apresenta alguns bugs na versão mobile por conta do tempo disponivel para o desenvovimento (24hrs), não cumnprindo apenas com o a documentação em Swagger por conta do prazo.
+O app foi contruido do zero, e apresenta alguns bugs na versão mobile por conta do tempo disponivel para o desenvovimento (24hrs), não cumprindo apenas com o a documentação em Swagger por conta do prazo.
+<br/>
 A aplicação usa JWT nas requisições e nas rotas como solicitado, seguindo as boas práticas de contrução de api's REST.
+<br/>
 O app foi dividido entre front e back em uma estrutura isolada, tendo suporte a PWA, mesmo não sendo solicitado.
+<br/>
 O Software esta disponivel na web para agilizar os testes e processos como configuração do ambiente de desenvolvimento.
+<br/>
 Você pode visualizar a aplicação neste link `https://liberfly.wolftechti.com.br/` e para acessa-la use o email `test@example.com` e senha `password`
+<br/>
 
 ## Licença
 [MIT](https://opensource.org/licenses/MIT)
