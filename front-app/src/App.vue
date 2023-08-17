@@ -9,7 +9,7 @@
 </template>
 
 <script>
-import TheSidebarVue from './components/Sidebar/TheSidebar.vue'
+import TheSidebarVue from './components/Sidebar/NavbarVue.vue'
 
 export default {
   components: {

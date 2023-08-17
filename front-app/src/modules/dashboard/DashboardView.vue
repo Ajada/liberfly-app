@@ -1,22 +1,37 @@
 <template>
-  <div class="home">
-    <TheTitleVue
-      :label="'Ultimos Chamados'"
-    />
-    <DinamicTableVue :items="callsItems" class="m-10" />
+  <div>
+    <TheTitleVue>
+      <i class="fa-solid fa-house"></i>
+      Inicio
+    </TheTitleVue>
+
+    <ContentBlockVue>
+      <div class="flex justify-center">
+        <div class="inline-block">
+          <ChartTitleVue>
+            Movimento
+          </ChartTitleVue>
+          <TheChartVue />
+        </div>
+      </div>
+    </ContentBlockVue>
   </div>
 </template>
 
 <script>
-import DinamicTableVue from '@/components/Tables/DinamicTable.vue'
+import ContentBlockVue from '@/components/Containers/ContentBlock.vue'
 import TheTitleVue from '@/components/BaseTitles/TheTitle.vue'
 import { api } from '@/utils/axios'
+import TheChartVue from '@/components/Charts/TheChart.vue'
+import ChartTitleVue from '@/components/BaseTitles/ChartTitle.vue'
 
 export default {
   name: 'HomeView',
   components: {
-    DinamicTableVue,
-    TheTitleVue
+    TheChartVue,
+    TheTitleVue,
+    ChartTitleVue,
+    ContentBlockVue
   },
   data () {
     return {

@@ -1,5 +1,5 @@
 <template>
-  <div class="rounded-lg bg-gray-100 p-4 m-4">
+  <div class="h-screen max-h-[100vh] rounded-lg bg-gray-50 p-1 m-1">
     <div>
       <slot />
     </div>

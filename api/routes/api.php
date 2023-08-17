@@ -1,8 +1,9 @@
 <?php
 
+use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Auth\AuthController;
 use App\Http\Controllers\CalledController;
-use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\LawyersProgressController;
 
 Route::group([
         'middleware' => 'api',
@@ -17,17 +18,25 @@ Route::group([
     'prefix' => 'v1',
     'middleware' => 'jwt.auth'
 ], function () {
-    Route::get('/', function () {
-        return json_encode([
-            'success' => true
-        ]);
-    });
     Route::get('calleds', [CalledController::class, 'index']);
     Route::get('calleds/{id}', [CalledController::class, 'show']);
-
     Route::post('calleds', [CalledController::class, 'store']);
-
     Route::put('calleds/{id}', [CalledController::class, 'update']);
-
     Route::delete('calleds/{id}', [CalledController::class, 'destroy']);
+});
+
+Route::controller(LawyersProgressController::class)
+    ->prefix('v1')
+    ->middleware('jwt.auth')
+    ->group(function () {
+
+        Route::get('all', 'index');
+
+        Route::get('find/{id}', 'show');
+
+        Route::post('new-process', 'store');
+
+        Route::put('process/{id}/edit', 'update');
+
+        Route::delete('process/{id}/remove', 'destroy');
 });

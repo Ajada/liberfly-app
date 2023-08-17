@@ -3,30 +3,33 @@
 namespace App\Http\Controllers;
 
 use App\Http\Controllers\Controller;
-use App\Models\Called;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use App\Models\LawyersProgress;
 
-class CalledController extends Controller
+class LawyersProgressController extends Controller
 {
-    public function index()
+    public function __construct()
     {
-        return response()->json(Called::all(), 200);
+        $this->middleware('jwt.auth');
     }
 
-    /**
-     * Store a newly created resource in storage.
-     */
+    public function index()
+    {
+        return response()->json(LawyersProgress::all(), 200);
+    }
+
     public function store(Request $request)
     {
         try {
-            Called::create($request->all());
+            LawyersProgress::create($request->all());
 
             return response()->json([
                 'success' => true
             ], 200);
 
         } catch (\Throwable $th) {
+            dd($th);
             return response()->json([
                 'error' => true,
                 'stack-trace' => $th
@@ -34,29 +37,23 @@ class CalledController extends Controller
         }
     }
 
-    /**
-     * Display the specified resource.
-     */
     public function show(string $id)
     {
-        $called = Called::find($id);
+        $lawyers = LawyersProgress::find($id);
 
-        if(!$called)
+        if(!$lawyers)
             return response()->json([
                 'error' => true,
-                'message' => 'Called not found'
+                'message' => 'Process not found'
             ], 404);
 
-        return response()->json($called, 200);
+        return response()->json($lawyers, 200);
     }
 
-    /**
-     * Update the specified resource in storage.
-     */
     public function update(Request $request, string $id)
     {
         foreach ($request->all() as $key => $value) {
-            DB::table('calleds')
+            DB::table('lawyers_progress')
                 ->whereId($id)
                     ->update([
                         $key => $value
@@ -66,27 +63,24 @@ class CalledController extends Controller
         return response()->json(['success' => true], 204);
     }
 
-    /**
-     * Remove the specified resource from storage.
-     */
     public function destroy(string $id)
     {
-        $called = new Called();
-        $called = $called->find($id);
+        $lawyers = new LawyersProgress();
+        $lawyers = $lawyers->find($id);
 
-        if(!$called)
+        if(!$lawyers)
             return response()
                 ->json([
                     'error' => true,
-                    'message' => 'Called not found'
+                    'message' => 'Process not found'
                 ]);
         
-        $called
+        $lawyers
             ->whereId($id)
                 ->delete();
 
         return response()->json(
-            $called ? ['success' => true] : ['error' => true]
+            $lawyers ? ['success' => true] : ['error' => true]
         );
     }
 }

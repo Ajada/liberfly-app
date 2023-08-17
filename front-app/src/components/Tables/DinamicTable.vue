@@ -1,35 +1,36 @@
 <template>
-  <div class="bg-white overflow-x-auto shadow-md rounded">
-    <div class="">
-      <div class="max-w-s">
-        <div class="h-100 overflow-y-auto">
-          <table class="min-w-full table-auto">
-            <thead>
-              <tr class="bg-gray-200 text-gray-600 uppercase text-sm leading-normal">
-                <th class="py-3 px-6 text-left">Atendente</th>
-                <th class="py-3 px-6 text-left">Cliente</th>
-                <th class="py-3 px-6 text-left">Assunto</th>
-                <th class="py-3 px-6 text-left">Data</th>
-                <th class="py-3 px-6 text-center">Ações</th>
+  <div class="overflow-x-auto">
+
+    <div class="flex justify-left">
+      <div class="inline-block">
+        <ChartTitleVue>
+          <slot />
+        </ChartTitleVue>
+      </div>
+    </div>
+
+    <div class="flex flex-col">
+      <div class="align-middle inline-block w-full">
+        <div class="overflow-x-auto shadow overflow-hidden border-b p-2 border-gray-200 sm:rounded-lg">
+          <table class="min-w-full divide-y divide-gray-200">
+            <thead class="bg-white">
+              <tr>
+                <th v-for="(column, index) in tableColumns" :key="index" scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                  {{ column }}
+                </th>
+
+                <!-- <th scope="col" class="relative px-6 py-3">
+                  <span class="sr-only">Detalhes</span>
+                </th> -->
               </tr>
             </thead>
-            <tbody class="text-gray-600 text-sm font-light">
-              <tr v-for="(item, index) in items" :key="index" class="border-b border-gray-200 hover:bg-gray-100">
-                <td class="py-3 px-6 text-left"> {{ item.employee }} </td>
-                <td class="py-3 px-6 text-left"> {{ item.client }} </td>
-                <td class="py-3 px-6 text-left"> {{ item.subject }} </td>
-                <td class="py-3 px-6 text-left"> {{ formatDate(item.created_at) }} </td>
-                <td class="py-3 px-6 text-center">
-                  <GeneralLinkVue
-                    class="bg-blue-400 m-1 hover:bg-blue-600 text-white font-bold py-2 px-4 rounded"
-                    :href="'edit-client/?id=' + item.id"
-                    :label="'Editar'"
-                  />
-                  <GenericButtonVue
-                    class="bg-red-400 m-1 hover:bg-red-600 text-white font-bold py-2 px-4 rounded"
-                    @click="removeItem(item.id)"
-                    :label="'Excluir'"
-                  />
+            <tbody class="bg-white divide-y divide-gray-200">
+<!-- <div class="flex-shrink-0 h-10 w-10">
+  <img class="h-10 w-10 rounded-full" src="https://ui-avatars.com/api/?name=Sebas+Luna&background=random" alt="Some">
+</div> -->
+              <tr v-for="(row, index) in tableRows" :key="index" class="text-left hover:shadow-lg hover:-translate-y-1 hover:-translate-x-1 transition-all" :class="index % 2 === 0 ? 'bg-gray-100' : 'bg-white'">
+                <td v-for="(column, indexColumn) in tableColumns" :key="indexColumn" class="px-6 py-4 whitespace-nowrap">
+                  {{ row[column] }}
                 </td>
               </tr>
             </tbody>
@@ -41,39 +42,17 @@
 </template>
 
 <script>
-import { api } from '@/utils/axios'
-import GenericButtonVue from '../BaseButtons/GenericButton.vue'
-import GeneralLinkVue from '../Links/GeneralLink.vue'
+// import { api } from '@/utils/axios'
+import ChartTitleVue from '../BaseTitles/ChartTitle.vue'
 
 export default {
   name: 'DinamicTable',
   components: {
-    GeneralLinkVue,
-    GenericButtonVue
+    ChartTitleVue
   },
   props: {
-    items: [Array, Object]
-  },
-  methods: {
-    formatDate (createdAt) {
-      const date = new Date(createdAt)
-      const options = { year: 'numeric', month: 'long', day: 'numeric' }
-      return date.toLocaleDateString('pt-BR', options)
-    },
-    removeItem (id) {
-      const confirm = window.confirm('Esta ação não pode ser desfeita, deseja continuar ?')
-
-      if (!confirm) return
-
-      api.delete(`calleds/${id}`)
-        .then(res => {
-          alert(res.data.success)
-          window.location.reload()
-        })
-        .catch(err => {
-          console.log(err.data)
-        })
-    }
+    tableColumns: [Array, Object],
+    tableRows: [Array, Object]
   }
 }
 </script>

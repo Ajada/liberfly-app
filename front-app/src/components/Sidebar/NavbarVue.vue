@@ -1,0 +1,235 @@
+<template>
+<div>
+  <nav class="menu">
+    <div class="smartphone-menu-trigger"></div>
+    <header class="avatar">
+      <img src="https://dompixel.wolftechti.com.br//images/DompixelShop.png" alt="user" />
+      <h2>John D.</h2>
+    </header>
+    <ul>
+      <li class="icon-dashboard"><span>Dashboard</span></li>
+      <li class="icon-customers"><span>Customers</span></li>
+      <li class="icon-users"><span>Users</span></li>
+      <li class="icon-settings"><span>Settings</span></li>
+    </ul>
+  </nav>
+
+  <main>
+    <div class="helper">
+      <slot />
+    </div>
+  </main>
+</div>
+</template>
+
+<style lang="scss" scoped>
+main {
+  position: relative;
+  height: 100vh;
+
+  .helper {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate3d(-50%, -50%, 0);
+    padding: 1.2em 2em;
+    text-align: center;
+    border-radius: 20px;
+    // font-size: 2em;
+  }
+}
+
+.menu {
+  background: #5bc995;
+  height: 100vh;
+  width: 240px;
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 5;
+  outline: none;
+
+  .avatar {
+    background: rgba(0, 0, 0, 0.1);
+    padding: 2em 0.5em;
+    text-align: center;
+
+    img {
+      width: 100px;
+      border-radius: 50%;
+      margin: 0 auto;
+      overflow: hidden;
+      border: 4px solid #ffea92;
+      box-shadow: 0 0 0 4px rgba(255, 255, 255, 0.2);
+    }
+
+    h2 {
+      font-weight: normal;
+      margin-bottom: 0;
+    }
+  }
+
+  ul {
+    list-style: none;
+    padding: 0.5em 0;
+    margin: 0 auto;
+    background: violet;
+    text-align: center;
+
+    li {
+      padding: 0.5em 1em;
+      font-size: 0.95em;
+      font-weight: regular;
+      background-repeat: no-repeat;
+      background-position: left 15px center;
+      background-size: auto 20px;
+      transition: all 0.15s linear;
+      cursor: pointer;
+
+      &.icon-dashboard {
+        background-image: url("http://www.entypo.com/images//gauge.svg");
+      }
+
+      &.icon-customers {
+        background-image: url("http://www.entypo.com/images//briefcase.svg");
+      }
+
+      &.icon-users {
+        background-image: url("http://www.entypo.com/images//users.svg");
+      }
+
+      &.icon-settings {
+        background-image: url("http://www.entypo.com/images//tools.svg");
+      }
+
+      &:hover {
+        background-color: rgba(0, 0, 0, 0.1);
+      }
+
+      &:focus {
+        outline: none;
+      }
+
+      @media screen and (max-width: 900px) and (min-width: 400px) {
+        height: 60px;
+        background-position: center center;
+        background-size: 30px auto;
+        position: relative;
+
+        span {
+          opacity: 0;
+          position: absolute;
+          background: rgba(0, 0, 0, 0.5);
+          padding: 0.2em 0.5em;
+          border-radius: 4px;
+          top: 50%;
+          left: 80px;
+          transform: translate3d(-15px, -50%, 0);
+          transition: all 0.15s ease-in-out;
+
+          &:before {
+            content: "";
+            width: 0;
+            height: 0;
+            position: absolute;
+            top: 50%;
+            left: -5px;
+            border-top: 5px solid transparent;
+            border-bottom: 5px solid transparent;
+            border-right: 5px solid rgba(0, 0, 0, 0.5);
+            transform: translateY(-50%);
+          }
+        }
+
+        &:hover span {
+          opacity: 1;
+          transform: translate3d(0px, -50%, 0);
+        }
+      }
+
+      @media screen and (max-width: 400px) {
+        padding: 1em 1em 1em 3em;
+        font-size: 1.2em;
+      }
+    }
+  }
+
+  @media screen and (max-width: 900px) and (min-width: 400px) {
+    width: 90px;
+
+    .avatar {
+      padding: 0.5em;
+      position: relative;
+
+      img {
+        width: 60px;
+      }
+
+      h2 {
+        opacity: 0;
+        position: absolute;
+        top: 50%;
+        left: 100px;
+        margin: 0;
+        min-width: 200px;
+        border-radius: 4px;
+        background: rgba(0, 0, 0, 0.4);
+        transform: translate3d(-20px, -50%, 0);
+        transition: all 0.15s ease-in-out;
+      }
+
+      &:hover h2 {
+        opacity: 1;
+        transform: translate3d(0px, -50%, 0);
+      }
+    }
+  }
+
+  @media screen and (max-width: 400px) {
+    width: 230px;
+    box-shadow: 0 0 0 100em rgba(0, 0, 0, 0);
+    transform: translate3d(-230px, 0, 0);
+    transition: all 0.3s ease-in-out;
+
+    .smartphone-menu-trigger {
+      width: 40px;
+      height: 40px;
+      position: absolute;
+      left: 100%;
+      background: #5bc995;
+
+      &:before,
+      &:after {
+        content: "";
+        width: 50%;
+        height: 2px;
+        background: #fff;
+        border-radius: 10px;
+        position: absolute;
+        top: 45%;
+        left: 50%;
+        transform: translate3d(-50%, -50%, 0);
+      }
+
+      &:after {
+        top: 55%;
+        transform: translate3d(-50%, -50%, 0);
+      }
+    }
+
+    ul li {
+      padding: 1em 1em 1em 3em;
+      font-size: 1.2em;
+    }
+
+    &:focus {
+      transform: translate3d(0, 0, 0);
+      box-shadow: 0 0 0 100em rgba(0, 0, 0, 0.6);
+    }
+
+    &:focus .smartphone-menu-trigger {
+      pointer-events: none;
+    }
+  }
+}
+</style>
