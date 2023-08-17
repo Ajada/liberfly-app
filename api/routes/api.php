@@ -25,18 +25,17 @@ Route::group([
     Route::delete('calleds/{id}', [CalledController::class, 'destroy']);
 });
 
-Route::controller(LawyersProgressController::class)
-    ->prefix('v1')
+Route::prefix('v1')
     ->middleware('jwt.auth')
     ->group(function () {
 
-        Route::get('all', 'index');
+        Route::get('all', [LawyersProgressController::class, 'index']);
 
-        Route::get('find/{id}', 'show');
+        Route::get('find/{id}', [LawyersProgressController::class, 'show']);
 
-        Route::post('new-process', 'store');
+        Route::post('new-process', [LawyersProgressController::class, 'store']);
 
-        Route::put('process/{id}/edit', 'update');
+        Route::put('process/{id}/edit', [LawyersProgressController::class, 'update']);
 
-        Route::delete('process/{id}/remove', 'destroy');
+        Route::delete('process/{id}/remove', [LawyersProgressController::class, 'destroy']);
 });
