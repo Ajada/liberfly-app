@@ -42,7 +42,7 @@
 </template>
 
 <script>
-// import { api } from '@/utils/axios'
+import { api } from '@/utils/axios'
 import ChartTitleVue from '../BaseTitles/ChartTitle.vue'
 
 export default {
