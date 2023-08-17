@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Auth\AuthController;
 use App\Http\Controllers\CalledController;
 use App\Http\Controllers\LawyersProgressController;
+use App\Http\Controllers\UserController;
 
 Route::group([
         'middleware' => 'api',
@@ -38,4 +39,13 @@ Route::prefix('v1')
         Route::put('process/{id}/edit', [LawyersProgressController::class, 'update']);
 
         Route::delete('process/{id}/remove', [LawyersProgressController::class, 'destroy']);
+
+
+        Route::get('find-user/{id}',            [UserController::class, 'show']);
+
+        Route::post('user/new',             [UserController::class, 'register']);
+
+        Route::put('user/{id}/edit',            [UserController::class, 'update']);
+
+        Route::delete('user/{id}/remove',           [UserController::class, 'destroy']);
 });
