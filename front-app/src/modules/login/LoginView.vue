@@ -65,7 +65,7 @@ export default {
 
 <style>
 .bg-image {
-  background-image: url('http://localhost:8080/img/app/bg-f.png');
+  background-image: url('https://liberfly.wolftechti.com.br/img/app/bg-f.png');
   background-position: center;
   background-size: cover;
   background-repeat: no-repeat;
