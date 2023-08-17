@@ -39,7 +39,7 @@ export default {
     }
   },
   mounted () {
-    api.get('calleds')
+    api.get('v1/calleds')
       .then(res => {
         return (this.callsItems = res.data)
       })

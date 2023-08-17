@@ -4,11 +4,19 @@ import EditView from '@/modules/clients/layout/EditView.vue'
 export const clientsRoutes = {
   path: '/clients',
   name: 'client',
-  component: ClientsView
+  component: ClientsView,
+  beforeRouteEnter (to, from, next) {
+    if (!localStorage.__access) next({ name: 'login' })
+    next()
+  }
 }
 
 export const clientEditRoute = {
   path: '/edit-client',
   name: 'edit-client',
-  component: EditView
+  component: EditView,
+  beforeRouteEnter (to, from, next) {
+    if (!localStorage.__access) next({ name: 'login' })
+    next()
+  }
 }

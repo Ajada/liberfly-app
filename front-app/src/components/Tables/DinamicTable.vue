@@ -51,8 +51,28 @@ export default {
     ChartTitleVue
   },
   props: {
-    tableColumns: [Array, Object],
-    tableRows: [Array, Object]
+    items: [Array, Object]
+  },
+  methods: {
+    formatDate (createdAt) {
+      const date = new Date(createdAt)
+      const options = { year: 'numeric', month: 'long', day: 'numeric' }
+      return date.toLocaleDateString('pt-BR', options)
+    },
+    removeItem (id) {
+      const confirm = window.confirm('Esta ação não pode ser desfeita, deseja continuar ?')
+
+      if (!confirm) return
+
+      api.delete(`v1/calleds/${id}`)
+        .then(res => {
+          alert(res.data.success)
+          window.location.reload()
+        })
+        .catch(err => {
+          console.log(err.data)
+        })
+    }
   }
 }
 </script>
