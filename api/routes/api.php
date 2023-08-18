@@ -10,6 +10,7 @@ Route::group([
         'middleware' => 'api',
         'prefix' => 'auth'
     ], function () {
+    Route::get('me', [AuthController::class, 'me']);
     Route::post('login', [AuthController::class, 'login']);
     Route::post('logout', [AuthController::class, 'logout']);
 });
@@ -27,7 +28,6 @@ Route::group([
 });
 
 Route::prefix('v1')
-    ->middleware('jwt.auth')
     ->group(function () {
 
         Route::get('all', [LawyersProgressController::class, 'index']);

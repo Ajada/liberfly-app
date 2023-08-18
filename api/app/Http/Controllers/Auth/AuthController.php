@@ -15,8 +15,8 @@ class AuthController extends Controller
      */
     public function __construct()
     {
-        $this->middleware('auth:api', ['except' => ['login']]);
-        return auth()->shouldUse('api');
+        $this->middleware('jwt.auth', ['except' => ['login']]);
+        auth()->shouldUse('api');
     }
 
     /**
@@ -40,9 +40,9 @@ class AuthController extends Controller
      *
      * @return \Illuminate\Http\JsonResponse
      */
-    public function me()
+    public function me(Request $request)
     {
-        return response()->json(auth('api')->user());
+        return response()->json(['success' => $request->header('authorization')]);
     }
 
     /**

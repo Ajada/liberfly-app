@@ -9,6 +9,11 @@ use Illuminate\Support\Facades\DB;
 
 class UserController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('jwt.auth');
+    }
+
     public function register(Request $request) 
     {
         if (!$request->filled(['email', 'password'])) {
